@@ -1,95 +1,86 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { client } from "../libs/client";
+import "./main.css";
+import CategoryList from "./components/CategoryList/CategoryList";
+import SearchRecipe from "./components/SearchRecipe.jsx/SearchRecipe";
+import Loading from "./components/Loading/Loading";
+
+// 型の定義
+
+type recipe = {
+    id: string;
+    title: string;
+    recipes: {
+        img: {
+            url: string;
+        };
+    }[];
+};
+
+type recipeList = {
+    contents: recipe[];
+};
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    const [recipeList, setRecipeList] = useState<recipeList | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    // レシピ一覧の取得
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await client.getList<recipe>({
+                    endpoint: "kibunmeshi",
+                    contentId: "id",
+                });
+                setRecipeList(response);
+                setLoading(false);
+            } catch (error) {
+                setError(error as Error);
+            } finally {
+                setLoading(false); // データ取得後にローディングを終了
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <div>Error</div>;
+    }
+
+    return (
+        <div className="main-content">
+            <SearchRecipe />
+            <div className="new-content grid">
+                {recipeList?.contents.slice(0, 6).map((content) => (
+                    <div key={content.id} className="item">
+                        <Link href={`/recipe/${content.id}`}>
+                            <img
+                                src={content.recipes[0].img.url}
+                                alt={content.title}
+                            />
+                            <p>{content.title}</p>
+                        </Link>
+                    </div>
+                ))}
+            </div>
+
+            <div className="recipe-all ">
+                <Link href="/recipes">
+                    <div className="btn">レシピ一覧はこちらから</div>
+                </Link>
+            </div>
+
+            <CategoryList />
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+    );
 }
