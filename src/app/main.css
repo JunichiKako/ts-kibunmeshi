@@ -2,20 +2,7 @@
     main
    -------------------------- */
 
-.main-content {
-    margin-top: 90px;
-    margin-left: 200px;
-    padding: 0 46px;
-}
 
-.main-content a:hover {
-    opacity: 0.8;
-}
-
-.side-menu {
-    min-width: 200px;
-    display: flex;
-}
 
 .grid {
     display: grid;
@@ -66,7 +53,6 @@
     font-size: 0.775rem;
 }
 
-/* タイトルは共通 */
 
 .content-title {
     text-align: left;
@@ -148,17 +134,7 @@
     opacity: 0.8;
 }
 
-@media screen and (max-width: 950px) {
-    .main-content {
-        width: 100%;
-        margin-left: 0;
-    }
-}
-
 @media screen and (max-width: 768px) {
-    .main-content {
-        padding: 0 24px;
-    }
     .grid {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -184,10 +160,6 @@
 }
 
 @media screen and (max-width: 450px) {
-    .main-content {
-        padding: 0 12px;
-    }
-
     .grid {
         padding: 0 8px;
     }

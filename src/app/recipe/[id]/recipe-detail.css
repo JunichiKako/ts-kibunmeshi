@@ -1,7 +1,4 @@
-.recipe-content {
-    margin-left: 200px;
-    padding: 0 46px;
-}
+
 
 .recipe-header {
     max-width: 700px;
@@ -102,10 +99,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .recipe-content {
-        margin-left: 0;
-        padding: 0 16px;
-    }
 
     .recipe-header {
         flex-direction: column;

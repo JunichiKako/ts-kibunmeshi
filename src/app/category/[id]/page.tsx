@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import { client } from "@/libs/client";
 import { CategoryData } from "../../types/recipe";
 import Link from "next/link";
-import Loading from "@/app/components/Loading/Loading";
+import Loading from "@/app/_components/Loading/Loading";
 
 const CategoryList = () => {
     const [data, setData] = useState<CategoryData | null>(null);

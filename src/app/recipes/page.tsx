@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { client } from "@/libs/client";
 import "./recipes.css";
-import Loading from "../components/Loading/Loading";
+import Loading from "../_components/Loading/Loading";
 import { RecipeList, Recipe } from "../types/recipe";
 
 export default function Recipes() {
@@ -78,7 +78,7 @@ export default function Recipes() {
     };
 
     return (
-        <div className="main-content">
+        <div >
             <div className="recipes-title">#レシピ一覧</div>
             <div className="new-content grid">
                 {recipes?.contents.map((content) => (

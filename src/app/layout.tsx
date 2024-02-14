@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "./components/SideBar/Sidebar";
-import Footer from "./components/Footer/Footer";
+import Sidebar from "./_components/SideBar/Sidebar";
+import Footer from "./_components/Footer/Footer";
 import Favicon from "/public/images/common/favicon.ico";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,8 +22,10 @@ export default function RootLayout({
         <html lang="ja">
             <body>
                 <Sidebar />
-                {children}
-                <Footer />
+                <div className="main-content">
+                    {children}
+                    <Footer />
+                </div>
             </body>
         </html>
     );
