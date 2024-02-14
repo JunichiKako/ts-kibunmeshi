@@ -1,8 +1,15 @@
 footer {
-    padding: 20px 0;
-    font-size: 10px;
-    margin-top: 46px;
+    padding-top: 50px;
     text-align: center;
+    position: relative;
 }
 
-
+footer p {
+    position: absolute;
+    bottom: 0;
+    font-size: 10px;
+    margin: auto;
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
