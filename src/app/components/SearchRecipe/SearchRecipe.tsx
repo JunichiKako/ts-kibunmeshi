@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useState } from "react";
 import "./SearchRecipe.css";
 import { useRouter } from "next/navigation";
@@ -25,9 +24,10 @@ const SearchRecipe = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="レシピを検索"
                 />
-                <button onClick={handleSearch} className="">検索</button>
+                <button onClick={handleSearch} className="search-btn">
+                    検索
+                </button>
             </div>
-            
         </div>
     );
 };

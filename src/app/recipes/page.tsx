@@ -5,23 +5,10 @@ import React, { useState, useEffect } from "react";
 import { client } from "@/libs/client";
 import "./recipes.css";
 import Loading from "../components/Loading/Loading";
-
-// レスポンスの型を定義する
-type recipes = {
-    id: string;
-    title: string;
-    recipes: {
-        img: { url: string };
-    }[];
-};
-
-type recipesResponse = {
-    contents: recipes[];
-    // 必要に応じて他のプロパティも追加
-};
+import { RecipeList, Recipe } from "../types/recipe";
 
 export default function Recipes() {
-    const [recipes, setRecipes] = useState<recipesResponse | null>(null);
+    const [recipes, setRecipes] = useState<RecipeList | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -98,7 +85,7 @@ export default function Recipes() {
                     <div key={content.id} className="item">
                         <Link href={`/recipe/${content.id}`}>
                             <img
-                                src={content.recipes[0].img.url}
+                                src={content.recipes[0]?.img?.url}
                                 alt={content.title}
                             />
                             <p>{content.title}</p>

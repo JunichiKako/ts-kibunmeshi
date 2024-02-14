@@ -5,15 +5,22 @@ import "./category.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { client } from "@/libs/client";
+import { CategoryData } from "../../types/recipe";
 import Link from "next/link";
 import Loading from "@/app/components/Loading/Loading";
 
 const CategoryList = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<CategoryData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<Error | null>(null);
 
     const { id } = useParams();
+
+    // カテゴリ名に基づくスタイルの型を定義
+    type CategoryStyles = Record<
+        string,
+        { backgroundColor: string; color: string }
+    >;
 
     useEffect(() => {
         async function fetchCategory() {
@@ -25,7 +32,7 @@ const CategoryList = () => {
                 setData(response);
                 console.log(response);
             } catch (error) {
-                setError(error);
+                setError(error as Error);
             }
             setLoading(false);
         }
@@ -50,11 +57,20 @@ const CategoryList = () => {
     const categoryName = data.contents[0].category.title;
 
     // カテゴリー名に基づいて背景色をマッピング
-    const categoryStyles = {
+    const categoryStyles: Record<
+        string,
+        { backgroundColor: string; color: string }
+    > = {
         あっさり: { backgroundColor: "#a7d1d1", color: "#fff" },
         さっぱり: { backgroundColor: "#ffb700", color: "#fff" },
         ガッツリ: { backgroundColor: "#e14b00", color: "#fff" },
         ぱぱっと: { backgroundColor: "#201e64", color: "#fff" },
+    };
+
+    // 安全なアクセスとデフォルト値の処理
+    const style = categoryStyles[categoryName] || {
+        backgroundColor: "#fff",
+        color: "#000",
     };
 
     return (

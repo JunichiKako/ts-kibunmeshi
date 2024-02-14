@@ -3,29 +3,14 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { client } from "../libs/client";
+import { Recipe, RecipeList } from "./types/recipe";
 import "./main.css";
 import CategoryList from "./components/CategoryList/CategoryList";
-import SearchRecipe from "./components/SearchRecipe.jsx/SearchRecipe";
+import SearchRecipe from "./components/SearchRecipe/SearchRecipe";
 import Loading from "./components/Loading/Loading";
 
-// 型の定義
-
-type recipe = {
-    id: string;
-    title: string;
-    recipes: {
-        img: {
-            url: string;
-        };
-    }[];
-};
-
-type recipeList = {
-    contents: recipe[];
-};
-
 export default function Home() {
-    const [recipeList, setRecipeList] = useState<recipeList | null>(null);
+    const [recipeList, setRecipeList] = useState<RecipeList | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -33,7 +18,7 @@ export default function Home() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await client.getList<recipe>({
+                const response = await client.getList<Recipe>({
                     endpoint: "kibunmeshi",
                     contentId: "id",
                 });
@@ -65,7 +50,7 @@ export default function Home() {
                     <div key={content.id} className="item">
                         <Link href={`/recipe/${content.id}`}>
                             <img
-                                src={content.recipes[0].img.url}
+                                src={content.recipes[0]?.img?.url}
                                 alt={content.title}
                             />
                             <p>{content.title}</p>

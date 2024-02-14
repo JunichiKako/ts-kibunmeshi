@@ -4,27 +4,13 @@ import "./recipe-detail.css";
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { client } from "@/libs/client";
+import { Recipe } from "../../types/recipe";
 import Loading from "@/app/components/Loading/Loading";
 
-type recipe = {
-    title: string;
-    category: {
-        title: string;
-    };
-    recipes: Array<{
-        img?: {
-            url: string;
-        };
-        name?: string;
-        fieldId: string;
-        material?: string;
-        quantity?: string;
-        howTo?: string;
-    }>;
-};
+
 
 export default function RecipeDetail() {
-    const [recipe, setRecipe] = useState<recipe | null>(null);
+    const [recipe, setRecipe] = useState<Recipe | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 

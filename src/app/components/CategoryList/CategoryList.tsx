@@ -2,16 +2,12 @@
 
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { Recipe } from "../../types/recipe";
 import { client } from "@/libs/client";
 import Loading from "../Loading/Loading";
 
-type category = {
-    id: string;
-    title: string;
-};
-
 const CategoryList = () => {
-    const [categories, setCategories] = useState<category[]>([]);
+    const [categories, setCategories] = useState<Recipe[]>([]);
     const [categoriesLoading, setCategoriesLoading] = useState<boolean>(true);
     const [categoriesError, setCategoriesError] = useState<Error | null>(null);
 
@@ -19,11 +15,9 @@ const CategoryList = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await client.getList(
-                    {
-                        endpoint: "category",
-                    }
-                );
+                const response = await client.getList({
+                    endpoint: "category",
+                });
                 setCategories(response.contents);
                 setCategoriesLoading(false);
             } catch (error) {
@@ -44,7 +38,7 @@ const CategoryList = () => {
     }
 
     // カテゴリー画像の設定
-    const img = (title:string) => {
+    const img = (title: string) => {
         if (title === "あっさり") return "/images/category/assari.png";
         if (title === "さっぱり") return "/images/category/sappari.png";
         if (title === "ガッツリ") return "/images/category/gatturi.png";

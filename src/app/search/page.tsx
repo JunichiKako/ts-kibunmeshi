@@ -7,16 +7,9 @@ import { useSearchParams } from "next/navigation";
 import "../main.css";
 import "./search.css";
 
-import SearchRecipe from "../components/SearchRecipe.jsx/SearchRecipe";
+import SearchRecipe from "../components/SearchRecipe/SearchRecipe";
 import Loading from "../components/Loading/Loading";
-
-type searchRecipe = {
-    id: string;
-    title: string;
-    recipes: {
-        img: { url: string };
-    }[];
-};
+import { searchRecipe } from "../types/recipe";
 
 export default function Page() {
     const searchParams = useSearchParams();
