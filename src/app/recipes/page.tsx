@@ -6,6 +6,7 @@ import { client } from "@/libs/client";
 import "./recipes.css";
 import Loading from "../_components/Loading/Loading";
 import { RecipeList, Recipe } from "../types/recipe";
+import Image from "next/image";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState<RecipeList | null>(null);
@@ -20,13 +21,12 @@ export default function Recipes() {
                 // APIからデータを取得
                 const response = await client.getList({
                     endpoint: "kibunmeshi",
-                    contentId: "id",
                     queries: {
                         limit: recipesPerPage,
                         offset: (currentPage - 1) * recipesPerPage,
                     },
                 });
-                setRecipes(response);
+                setRecipes(response)
                 setLoading(false);
             } catch (error) {
                 // エラーを処理
@@ -78,16 +78,21 @@ export default function Recipes() {
     };
 
     return (
-        <div >
+        <div>
             <div className="recipes-title">#レシピ一覧</div>
             <div className="new-content grid">
                 {recipes?.contents.map((content) => (
                     <div key={content.id} className="item">
                         <Link href={`/recipe/${content.id}`}>
-                            <img
-                                src={content.recipes[0]?.img?.url}
-                                alt={content.title}
-                            />
+                            {content.recipes[0]?.img?.url && (
+                                <Image
+                                    src={content.recipes[0].img.url}
+                                    alt={content.title}
+                                    width={250} // 適切なサイズを設定してください
+                                    height={150} // 適切なサイズを設定してください
+                                    layout="responsive"
+                                />
+                            )}
                             <p>{content.title}</p>
                         </Link>
                     </div>

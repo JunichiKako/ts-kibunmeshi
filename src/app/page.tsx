@@ -21,7 +21,7 @@ export default function Home() {
             try {
                 const response = await client.getList<Recipe>({
                     endpoint: "kibunmeshi",
-                    contentId: "id",
+                    
                 });
                 setRecipeList(response);
                 setLoading(false);
