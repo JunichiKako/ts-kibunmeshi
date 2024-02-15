@@ -64,7 +64,9 @@ const CategoryList = () => {
                             <Image
                                 src={img(category.title)}
                                 alt={category.title}
-                                layout="fill"
+                                width={300}
+                                height={200}
+                                priority={true}
                             />
                         </Link>
                     </div>

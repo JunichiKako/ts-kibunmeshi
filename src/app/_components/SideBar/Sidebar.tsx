@@ -43,7 +43,7 @@ const Sidebar = () => {
             <header className="header">
                 <Link href="/">
                     <h1 className="logo">
-                    <Image src="/images/common/logo.png" alt="ロゴ" width={128} height={77} layout="intrinsic" />
+                    <Image src="/images/common/logo.png" alt="ロゴ" width={128} height={77} priority={true}/>
                     </h1>
                 </Link>
             </header>

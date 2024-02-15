@@ -53,7 +53,10 @@ export default function Home() {
                                 <Image
                                     src={content.recipes[0].img.url} // ここで`undefined`ではないことが保証されています
                                     alt={content.title}
-                                    layout="fill"
+                                    width={300}
+                                    height={200}
+                                    priority={true}
+                                    style={{objectFit: "cover"}}
                                 />
                             ) : (
                                 // `src`が`undefined`の場合の代替コンテンツ
