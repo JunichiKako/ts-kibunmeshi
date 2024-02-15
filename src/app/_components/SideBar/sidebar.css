@@ -42,6 +42,10 @@
     padding-top: 50px;
 }
 
+.side-menu {
+    display: flex;
+}
+
 .sub-menu-home,
 .sub-menu-head,
 .sub-menu-contact {

@@ -8,8 +8,8 @@ import "../main.css";
 import "./search.css";
 import Image from "next/image";
 
-import SearchRecipe from "../components/SearchRecipe/SearchRecipe";
-import Loading from "../components/Loading/Loading";
+import SearchRecipe from "../_components/SearchRecipe/SearchRecipe";
+import Loading from "../_components/Loading/Loading";
 import { searchRecipe } from "../types/recipe";
 
 export default function Page() {
@@ -43,7 +43,7 @@ export default function Page() {
     }
 
     return (
-        <div className="main-content">
+        <div>
             <SearchRecipe />
             {/* 検索結果の表示 */}
             <div className="search-results">

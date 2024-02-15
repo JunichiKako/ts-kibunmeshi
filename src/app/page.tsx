@@ -5,9 +5,9 @@ import React, { useState, useEffect } from "react";
 import { client } from "../libs/client";
 import { Recipe, RecipeList } from "./types/recipe";
 import "./main.css";
-import CategoryList from "./components/CategoryList/CategoryList";
-import SearchRecipe from "./components/SearchRecipe/SearchRecipe";
-import Loading from "./components/Loading/Loading";
+import CategoryList from "./_components/CategoryList/CategoryList";
+import SearchRecipe from "./_components/SearchRecipe/SearchRecipe";
+import Loading from "./_components/Loading/Loading";
 import Image from "next/image";
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
     }
 
     return (
-        <div className="main-content">
+        <div>
             <SearchRecipe />
             <div className="new-content grid">
                 {recipeList?.contents.slice(0, 6).map((content) => (

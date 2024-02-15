@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { client } from "@/libs/client";
 import { Recipe } from "../../types/recipe";
-import Loading from "@/app/components/Loading/Loading";
+import Loading from "@/app/_components/Loading/Loading";
 import Image from "next/image";
 
 export default function RecipeDetail() {

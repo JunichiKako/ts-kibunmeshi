@@ -1,15 +1,10 @@
-.contact-content {
-    margin-left: 200px;
-    text-align: right;
-    padding: 0 46px;
-}
+
 
 /* タイトルは共通 */
 
-.content-title {
+.contact-title {
     text-align: center;
     font-size: 24px;
-    padding-top: 90px;
     margin-bottom: 50px;
 }
 
@@ -67,10 +62,7 @@ form button:hover {
 }
 
 @media screen and (max-width: 950px) {
-    .contact-content {
-        margin-left: 0;
-        padding: 0 20px;
-    }
+
 
     .contact-container {
         max-width: 79%;
