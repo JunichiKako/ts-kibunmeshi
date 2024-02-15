@@ -91,6 +91,7 @@ export default function Recipes() {
                                     width={300}
                                     height={200}
                                     priority={true}
+                                    style={{ objectFit: "cover" }}
                                 />
                             )}
                             <p>{content.title}</p>
