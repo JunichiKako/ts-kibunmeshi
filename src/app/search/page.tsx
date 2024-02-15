@@ -8,7 +8,7 @@ import "../main.css";
 import "./search.css";
 import Image from "next/image";
 
-import SearchRecipe from "../_components/SearchRecipe/SearchRecipe";
+import SearchRecipe from "../_searchrecipe/SearchRecipe";
 import Loading from "../_components/Loading/Loading";
 import { searchRecipe } from "../types/recipe";
 
