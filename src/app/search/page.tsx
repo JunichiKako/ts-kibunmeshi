@@ -11,14 +11,11 @@ import Image from "next/image";
 import SearchRecipe from "../_components/SearchRecipe/SearchRecipe";
 import Loading from "../_components/Loading/Loading";
 import { searchRecipe } from "../types/recipe";
-import { useRouter } from "next/router";
+
 
 export default function Page() {
-    // const searchParams = useSearchParams();
-    // const word = searchParams.get("word");
-
-    const router = useRouter();
-    const word = router.query.word;
+    const searchParams = useSearchParams();
+    const word = searchParams.get("word");
     const [searchResults, setSearchResults] = useState<searchRecipe[]>([]);
     const [loading, setLoading] = useState(false);
 
