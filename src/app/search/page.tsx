@@ -11,11 +11,14 @@ import Image from "next/image";
 import SearchRecipe from "../_components/SearchRecipe/SearchRecipe";
 import Loading from "../_components/Loading/Loading";
 import { searchRecipe } from "../types/recipe";
-import { Suspense } from "react";
+import { useRouter } from "next/router";
 
 export default function Page() {
-    const searchParams = useSearchParams();
-    const word = searchParams.get("word");
+    // const searchParams = useSearchParams();
+    // const word = searchParams.get("word");
+
+    const router = useRouter();
+    const word = router.query.word;
     const [searchResults, setSearchResults] = useState<searchRecipe[]>([]);
     const [loading, setLoading] = useState(false);
 
@@ -45,9 +48,7 @@ export default function Page() {
 
     return (
         <div>
-            <Suspense>
-                <SearchRecipe />
-            </Suspense>
+            <SearchRecipe />
             {/* 検索結果の表示 */}
             <div className="search-results">
                 {searchResults.slice(0, 6).map((content) => (
