@@ -6,7 +6,7 @@ import { client } from "../libs/client";
 import { Recipe, RecipeList } from "./types/recipe";
 import "./main.css";
 import CategoryList from "./_components/CategoryList/CategoryList";
-import SearchRecipe from "./_searchrecipe/SearchRecipe";
+import SearchRecipe from "./_components/SearchRecipe/SearchRecipe";
 import Loading from "./_components/Loading/Loading";
 import Image from "next/image";
 
@@ -21,7 +21,6 @@ export default function Home() {
             try {
                 const response = await client.getList<Recipe>({
                     endpoint: "kibunmeshi",
-                    
                 });
                 setRecipeList(response);
                 setLoading(false);
