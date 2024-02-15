@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { client } from "@/libs/client";
 import { useSearchParams } from "next/navigation";
@@ -12,7 +12,7 @@ import SearchRecipe from "../_components/SearchRecipe/SearchRecipe";
 import Loading from "../_components/Loading/Loading";
 import { searchRecipe } from "../types/recipe";
 
-export default function Page() {
+const Search: React.FC = () => {
     const searchParams = useSearchParams();
     const word = searchParams.get("word");
     const [searchResults, setSearchResults] = useState<searchRecipe[]>([]);
@@ -63,5 +63,13 @@ export default function Page() {
                 ))}
             </div>
         </div>
+    );
+};
+
+export default function Page() {
+    return (
+        <Suspense>
+            <Search />
+        </Suspense>
     );
 }

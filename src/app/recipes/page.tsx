@@ -26,7 +26,7 @@ export default function Recipes() {
                         offset: (currentPage - 1) * recipesPerPage,
                     },
                 });
-                setRecipes(response)
+                setRecipes(response);
                 setLoading(false);
             } catch (error) {
                 // エラーを処理
@@ -88,9 +88,9 @@ export default function Recipes() {
                                 <Image
                                     src={content.recipes[0].img.url}
                                     alt={content.title}
-                                    width={250} // 適切なサイズを設定してください
-                                    height={150} // 適切なサイズを設定してください
-                                    layout="responsive"
+                                    width={300}
+                                    height={200}
+                                    priority={true}
                                 />
                             )}
                             <p>{content.title}</p>
