@@ -6,8 +6,7 @@ import { useParams } from "next/navigation";
 import { client } from "@/libs/client";
 import { Recipe } from "../../types/recipe";
 import Loading from "@/app/components/Loading/Loading";
-
-
+import Image from "next/image";
 
 export default function RecipeDetail() {
     const [recipe, setRecipe] = useState<Recipe | null>(null);
@@ -72,10 +71,14 @@ export default function RecipeDetail() {
                 .filter((recipe) => recipe && recipe.img?.url)
                 .map((recipe, index) => (
                     <div key={index} className="thumbnail">
-                        <img
-                            src={recipe.img!.url}
-                            alt={recipe.name || "Recipe image"}
-                        />
+                        {recipe.img?.url && (
+                            <Image
+                                src={recipe.img.url}
+                                alt={recipe.name || "Recipe image"}
+                                width={700}
+                                height={390}
+                            />
+                        )}
                     </div>
                 ))}
 

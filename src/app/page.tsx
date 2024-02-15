@@ -8,6 +8,7 @@ import "./main.css";
 import CategoryList from "./components/CategoryList/CategoryList";
 import SearchRecipe from "./components/SearchRecipe/SearchRecipe";
 import Loading from "./components/Loading/Loading";
+import Image from "next/image";
 
 export default function Home() {
     const [recipeList, setRecipeList] = useState<RecipeList | null>(null);
@@ -49,10 +50,16 @@ export default function Home() {
                 {recipeList?.contents.slice(0, 6).map((content) => (
                     <div key={content.id} className="item">
                         <Link href={`/recipe/${content.id}`}>
-                            <img
-                                src={content.recipes[0]?.img?.url}
-                                alt={content.title}
-                            />
+                            {content.recipes[0]?.img?.url ? (
+                                <Image
+                                    src={content.recipes[0].img.url} // ここで`undefined`ではないことが保証されています
+                                    alt={content.title}
+                                    layout="fill"
+                                />
+                            ) : (
+                                // `src`が`undefined`の場合の代替コンテンツ
+                                <div>No image available</div>
+                            )}
                             <p>{content.title}</p>
                         </Link>
                     </div>

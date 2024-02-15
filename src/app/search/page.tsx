@@ -6,6 +6,7 @@ import { client } from "@/libs/client";
 import { useSearchParams } from "next/navigation";
 import "../main.css";
 import "./search.css";
+import Image from "next/image";
 
 import SearchRecipe from "../components/SearchRecipe/SearchRecipe";
 import Loading from "../components/Loading/Loading";
@@ -49,10 +50,13 @@ export default function Page() {
                 {searchResults.slice(0, 6).map((content) => (
                     <div key={content.id} className="item">
                         <Link href={`/recipe/${content.id}`}>
-                            <img
-                                src={content.recipes[0].img.url}
-                                alt={content.title}
-                            />
+                            {content.recipes[0].img.url && (
+                                <Image
+                                    src={content.recipes[0].img.url}
+                                    alt={content.title}
+                                    layout="fill"
+                                />
+                            )}
                             <p>{content.title}</p>
                         </Link>
                     </div>

@@ -4,10 +4,13 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import "./sidebar.css";
 import { client } from "@/libs/client";
+import { Category } from "../../types/recipe";
+import Image from 'next/image';
+
 
 const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [categories, setCategories] = useState([]); // カテゴリーの状態変数
+    const [categories, setCategories] = useState<Category[]>([]); // カテゴリーの状態変数
     const [isLoading, setIsLoading] = useState(true); // ローディング状態変数
 
     const toggleMenu = () => {
@@ -40,7 +43,7 @@ const Sidebar = () => {
             <header className="header">
                 <Link href="/">
                     <h1 className="logo">
-                        <img src="./images/common/logo.png" alt="ロゴ" />
+                    <Image src="/images/common/logo.png" alt="ロゴ" width={128} height={77} layout="intrinsic" />
                     </h1>
                 </Link>
             </header>

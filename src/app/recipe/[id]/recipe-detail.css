@@ -27,8 +27,8 @@
 }
 
 .thumbnail {
-    max-width: 700px;
-    margin: 0 auto;
+    max-width: 700px !important;
+    margin: 0 auto !important
 }
 
 .thumbnail img {

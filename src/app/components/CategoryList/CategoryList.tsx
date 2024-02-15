@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import { Recipe } from "../../types/recipe";
 import { client } from "@/libs/client";
 import Loading from "../Loading/Loading";
+import Image from "next/image";
 
 const CategoryList = () => {
     const [categories, setCategories] = useState<Recipe[]>([]);
@@ -37,12 +38,21 @@ const CategoryList = () => {
         return <div>Error</div>;
     }
 
-    // カテゴリー画像の設定
-    const img = (title: string) => {
-        if (title === "あっさり") return "/images/category/assari.png";
-        if (title === "さっぱり") return "/images/category/sappari.png";
-        if (title === "ガッツリ") return "/images/category/gatturi.png";
-        if (title === "ぱぱっと") return "/images/category/papatto.png";
+    // カテゴリー画像の設定関数を修正
+    const img = (title: string): string => {
+        switch (title) {
+            case "あっさり":
+                return "/images/category/assari.png";
+            case "さっぱり":
+                return "/images/category/sappari.png";
+            case "ガッツリ":
+                return "/images/category/gatturi.png";
+            case "ぱぱっと":
+                return "/images/category/papatto.png";
+            default:
+                // ここでデフォルト画像のパスを返す
+                return "/images/category/default.png";
+        }
     };
     return (
         <div id="category">
@@ -51,7 +61,11 @@ const CategoryList = () => {
                 {categories.map((category) => (
                     <div className="item" key={category.id}>
                         <Link href={`/category/${category.id}`}>
-                            <img src={img(category.title)} alt="" />
+                            <Image
+                                src={img(category.title)}
+                                alt={category.title}
+                                layout="fill"
+                            />
                         </Link>
                     </div>
                 ))}

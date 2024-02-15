@@ -8,6 +8,7 @@ import { client } from "@/libs/client";
 import { CategoryData } from "../../types/recipe";
 import Link from "next/link";
 import Loading from "@/app/components/Loading/Loading";
+import Image from "next/image";
 
 const CategoryList = () => {
     const [data, setData] = useState<CategoryData | null>(null);
@@ -82,11 +83,11 @@ const CategoryList = () => {
                 {data.contents.map((content) => (
                     <div key={content.id} className="item">
                         <Link href={`/recipe/${content.id}`}>
-                            {/* レシピの画像がある場合のみ表示 */}
                             {content.recipes[0] && content.recipes[0].img && (
-                                <img
+                                <Image
                                     src={content.recipes[0].img.url}
                                     alt={content.title}
+                                    layout="fill"
                                 />
                             )}
                             <p>{content.title}</p>
