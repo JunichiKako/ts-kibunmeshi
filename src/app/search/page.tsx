@@ -11,6 +11,7 @@ import Image from "next/image";
 import SearchRecipe from "../_components/SearchRecipe/SearchRecipe";
 import Loading from "../_components/Loading/Loading";
 import { searchRecipe } from "../types/recipe";
+import { Suspense } from "react";
 
 export default function Page() {
     const searchParams = useSearchParams();
@@ -44,7 +45,9 @@ export default function Page() {
 
     return (
         <div>
-            <SearchRecipe />
+            <Suspense>
+                <SearchRecipe />
+            </Suspense>
             {/* 検索結果の表示 */}
             <div className="search-results">
                 {searchResults.slice(0, 6).map((content) => (
