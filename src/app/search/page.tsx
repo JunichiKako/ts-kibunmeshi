@@ -73,3 +73,11 @@ export default function Page() {
         </Suspense>
     );
 }
+
+export default function Page() {
+    return (
+        <Suspense>
+            <Search />
+        </Suspense>
+    )
+}
