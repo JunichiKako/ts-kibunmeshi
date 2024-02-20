@@ -1,5 +1,5 @@
 export interface Recipe {
-    id: string; 
+    id: string;
     title: string;
     category: {
         title: string;
@@ -37,4 +37,13 @@ export interface searchRecipe {
             url: string;
         };
     }[];
+}
+
+export interface Material {
+    name: string;
+    quantity: string;
+}
+
+export interface HowTo {
+    text: string;
 }

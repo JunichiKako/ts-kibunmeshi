@@ -6,6 +6,7 @@
     margin-bottom: 50px;
     padding: 0 46px;
 }
+
 /* --------------------------
     検索フォーム
    -------------------------- */
@@ -42,8 +43,6 @@
 .search-btn:hover {
     opacity: 0.8;
 }
-
-
 
 @media screen and (max-width: 768px) {
     .content-header {
