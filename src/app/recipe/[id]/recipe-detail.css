@@ -1,4 +1,6 @@
-
+.recipe-content {
+    padding: 0 46px;
+}
 
 .recipe-header {
     max-width: 700px;
@@ -24,8 +26,8 @@
 }
 
 .thumbnail {
-    max-width: 700px !important;
-    margin: 0 auto !important
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .thumbnail img {
@@ -99,6 +101,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .recipe-content {
+        margin-left: 0;
+        padding: 0 16px;
+    }
 
     .recipe-header {
         flex-direction: column;

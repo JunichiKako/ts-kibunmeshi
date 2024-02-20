@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import MenuBtn from "../MenuBtn/MenuBtn";
 import "./SearchRecipe.css";
 import { useRouter } from "next/navigation";
 
@@ -28,7 +27,6 @@ const SearchRecipe = () => {
                     検索
                 </button>
             </div>
-            <MenuBtn />
         </div>
     );
 };
